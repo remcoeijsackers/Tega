@@ -1,1 +1,1 @@
-# namegen
+# Tega

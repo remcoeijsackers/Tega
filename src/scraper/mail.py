@@ -1,0 +1,68 @@
+from .spider import Jackson
+from selenium import webdriver
+
+
+def retrieve_disposable_mail():
+    options = webdriver.FirefoxOptions()
+    options.headless = True
+    x = Jackson(webdriver.Firefox(options=options))
+
+    return x.scrape_and_return(
+        {
+            "wait": 10,
+            "value": "value",
+            "elem": "mail",
+            "url": "https://temp-mail.org",
+            "options": {
+                "clean_up": True 
+            }
+        }
+    )
+
+class MailMonitor():
+    """
+    If the selenium session is kept alive, the inbox is still viewable.
+    """
+    def __init__(self) -> None:
+        self.jackson = Jackson(webdriver.Chrome())
+        self.__startup()
+
+    def __startup(self):
+        return self.jackson.scrape_and_return(
+        {
+            "wait": 10,
+            "value": "value",
+            "elem": "mail",
+            "url": "https://temp-mail.org",
+            "options": {
+                "clean_up": False 
+            }
+        }
+    )
+
+    def check_mail(self):
+        self.jackson.click_and_return(
+                    {
+            "wait": 10,
+            "value": "value",
+            "elem": "inboxSubject",
+            "url": "https://temp-mail.org",
+            "options": {
+                "clean_up": False,
+                "elemtype": "class"
+            }
+        }
+        )
+        return self.jackson.scrape_and_return(
+        {
+            "wait": 10,
+            "value": "value",
+            "elem": "user-data-subject",
+            "url": "https://temp-mail.org",
+            "options": {
+                "clean_up": False,
+                "elemtype": "class",
+                "same_url": True
+            }
+        }
+        )
