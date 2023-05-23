@@ -1,6 +1,6 @@
 from .spider import Jackson
 from selenium import webdriver
-
+from .build_session import build_driver
 
 def retrieve_disposable_mail():
     options = webdriver.FirefoxOptions()
@@ -24,7 +24,7 @@ class MailMonitor():
     If the selenium session is kept alive, the inbox is still viewable.
     """
     def __init__(self) -> None:
-        self.jackson = Jackson(webdriver.Chrome())
+        self.jackson = Jackson(build_driver())
         self.__startup()
 
     def __startup(self):
@@ -35,7 +35,8 @@ class MailMonitor():
             "elem": "mail",
             "url": "https://temp-mail.org",
             "options": {
-                "clean_up": False 
+                "clean_up": False,
+                "elemtype": "id"
             }
         }
     )

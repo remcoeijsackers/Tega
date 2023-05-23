@@ -1,6 +1,6 @@
 import click
 from src.agents.namegen import Maker, generate_sample_agent
-from src.scraper import retrieve_disposable_mail
+from src.scraper import retrieve_disposable_mail, MailMonitor
 import datetime
 
 @click.group()
@@ -10,6 +10,12 @@ def cli():
 @cli.command()
 def retrieve_mail():
     retrieve_disposable_mail()
+
+@cli.command()
+def retrieve_monitor_mail():
+    x= MailMonitor()
+    print(x.check_mail())
+
 
 @cli.command()
 def generate_account():

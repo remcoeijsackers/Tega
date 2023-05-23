@@ -30,6 +30,9 @@ class Jackson:
 
         self.driver.get(url)
 
+        if wait:
+            time.sleep(wait)
+
         if options:
             if "elemtype" in options:
                 if options.get("elemtype") == "id":
@@ -60,6 +63,8 @@ class Jackson:
                 self.driver.get(url)
         else:
             self.driver.get(url)
+        
+        time.sleep(5)
 
         if options:
             if "elemtype" in options:
