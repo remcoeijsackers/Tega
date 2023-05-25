@@ -36,11 +36,20 @@ class Jackson:
         if options:
             if "elemtype" in options:
                 if options.get("elemtype") == "id":
-                    el = self.driver.find_element(By.ID, elem)
+                    try:
+                        el = self.driver.find_element(By.ID, elem)
+                    except:
+                        print(f"could not find id {options.get('elemtype')}")
                 if options.get("elemtype") == "class":
-                    el = self.driver.find_element(By.CLASS_NAME, elem)
+                    try:
+                        el = self.driver.find_element(By.CLASS_NAME, elem)
+                    except:
+                        print(f"could not find class {options.get('elemtype')}")
         else:
-            el = self.driver.find_element(By.ID, elem)
+            try:
+                el = self.driver.find_element(By.ID, elem)
+            except:
+                print(f"could not find id {options.get('elemtype')}")
 
         if wait:
             time.sleep(wait)
@@ -77,9 +86,13 @@ class Jackson:
 
         if wait:
             time.sleep(wait)
+        try:
+            ret = el.get_attribute(value)
+            print(ret)
+        except:
+            print("no element to click")
+            return None
 
-        ret = el.get_attribute(value)
-        print(ret)
         if options:
             if "clean_up" in options and options.get("clean_up"):
                 self.driver.close()

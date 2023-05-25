@@ -5,20 +5,20 @@ import datetime
 
 @click.group()
 def cli():
-    pass
+    """ Fake Agents for testing """
 
-@cli.command()
-def retrieve_mail():
-    retrieve_disposable_mail()
+@cli.command('mail',  short_help='burner email')
+@click.option("-i", "--inbox", type=bool, default=False, show_default="current user", help="also include a browsable inbox")
+def mail(inbox):
+    """ retrieve an burner email with optional inbox """
+    if inbox:
+        x= MailMonitor()
+        print(x.check_mail())
+    else:
+        retrieve_disposable_mail()
 
-@cli.command()
-def retrieve_monitor_mail():
-    x= MailMonitor()
-    print(x.check_mail())
-
-
-@cli.command()
-def generate_account():
+@cli.command('account',  short_help='fake account')
+def account():
     ag = generate_sample_agent()
     print(ag.name())
     print(ag.nat)

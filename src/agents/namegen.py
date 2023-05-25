@@ -22,7 +22,6 @@ class Maker():
         return random.choice([True, False])
 
     def __generate_stub(self) -> AgentStub:
-        f = random.choice(male_first_names)
         l = random.choice(last_names)
         i = str(random.choice(letters)).upper()
 
