@@ -1,7 +1,6 @@
 import click
-from src.agents.namegen import Maker, generate_sample_agent
+from src.agents.namegen import Maker, MakerSettings, generate_sample_agent
 from src.scraper import retrieve_disposable_mail, MailMonitor
-import datetime
 
 @click.group()
 def cli():
@@ -19,15 +18,10 @@ def mail(inbox):
 
 @cli.command('account',  short_help='fake account')
 def account():
-    ag = generate_sample_agent()
-    print(ag.name())
-    print(ag.nat)
-    x = datetime.datetime.now().date() - ag.age.date()
-    yold = x/365
-    print(f"{ag.age.date()} ({yold.days})")
-    print(ag.email)
-    print(ag.password)
-    print("\n")
+    st = MakerSettings()
+    mk = Maker(st)
+    ag = generate_sample_agent(mk)
+    ag.intro()
     
 if __name__ == '__main__':
     cli()

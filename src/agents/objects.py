@@ -16,4 +16,13 @@ class Agent(AgentStub):
     
     def name(self):
         return f"{self.first_name} {self.initial if self.initial else ''}{' ' if self.initial else ''}{self.last_name}"
-    
+
+    def intro(self):
+        print(self.name())
+        print(self.nat)
+        x = datetime.datetime.now().date() - self.age.date()
+        yold = x/365
+        print(f"{self.age.date()} ({yold.days})")
+        print(self.email)
+        print(self.password)
+        print("\n")

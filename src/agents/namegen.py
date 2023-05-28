@@ -4,10 +4,15 @@ import datetime
 from .objects import Agent, AgentStub
 from .constants import male_first_names, last_names, letters, chars, get_first_based_nat,nationality
 
-
-class Maker():
+class MakerSettings:
     def __init__(self) -> None:
-        pass
+        self.email_type = "@gmail.com"
+        self.password_type = "all" # all | no_special
+
+
+class Maker:
+    def __init__(self, settings: MakerSettings) -> None:
+        self.settings = settings
 
     def generate(self):
         st = self.__generate_stub()
@@ -40,9 +45,8 @@ class Maker():
         m = random.randrange(1,12)
         d = random.randrange(1,27)
         return datetime.datetime(y,m,d)
-    
-    @staticmethod
-    def __generate_email(agent: AgentStub):
+
+    def __generate_email(self, agent: AgentStub):
         def __r_first(f):
             op = [str(f).lower(), str(f), f"{random.randrange(0, 100)}{str(f).lower()}"]
             return random.choice(op)
@@ -59,7 +63,7 @@ class Maker():
             return random.choice(op)
 
         pi = f"{__r_first(agent.first_name)}{__r_sec(agent.age)}{__r_third(agent)}"
-        return f"{pi}@gmail.com"
+        return f"{pi}{self.settings.email_type}"
     
     @staticmethod
     def __generate_password(agent: AgentStub):
@@ -81,7 +85,6 @@ class Maker():
         pw = f"{gN()}{gC()}{get_pw(10)}{gL()}"
         return pw
 
-def generate_sample_agent():
-    x = Maker()
-    ag = x.generate()
+def generate_sample_agent(maker: Maker) -> Agent:
+    ag = maker.generate()
     return ag
