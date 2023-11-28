@@ -1,6 +1,7 @@
 import click
 from src.agents.namegen import Maker, MakerConfig, generate_sample_agent
 from src.scraper import retrieve_disposable_mail, MailMonitor
+from src.scraper.mail_generator import DisposableMail, FakeMail
 
 @click.group()
 def cli():
@@ -18,16 +19,24 @@ def mail(inbox):
         print(mail)
 
 @cli.command('account',  short_help='fake account')
-@click.option("-f", "--format", type=str, show_default="current user", help="output format")
-def account(format):
+@click.option("-m", "--mail", type=str, default="f", show_default="mail type", help="include a burner mail [b] or a fake one [f]")
+def account(mail):
+    if mail == "f":
+        mail_handler = FakeMail()
+    if mail == "b":
+        mail_handler = DisposableMail()
+
     mk = Maker(
-        MakerConfig()
+            MakerConfig(
+                mail_generator = mail_handler
+            )
         )
     ag = generate_sample_agent(mk)
-    if not format:
-        print(ag.to_json())
-    if format == "values":
-        print(ag.to_json())
+
+
+    print(ag.to_json())
+
+    return ag.to_json()
 
 if __name__ == '__main__':
     cli()

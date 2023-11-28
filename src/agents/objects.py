@@ -26,7 +26,10 @@ class Agent(AgentStub):
     
     @property
     def date_of_birth(self):
-        return str(self.birthdate.date())
+        if isinstance(self.birthdate, datetime.datetime):
+            return str(self.birthdate.date())
+        else:
+            return self.birthdate
     
     def name(self):
         return f"{self.first_name} {self.initial if self.initial else ''}{' ' if self.initial else ''}{self.last_name}"

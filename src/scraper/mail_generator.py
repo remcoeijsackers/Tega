@@ -1,11 +1,12 @@
 import datetime
 import random
 from src.agents.objects import AgentStub
+from src.scraper.mail import retrieve_disposable_mail
 
 
 class MailHandler(object):
 
-    def retrieve_email(self, agent: AgentStub):
+    def retrieve_email(self, agent: AgentStub, email_type: str):
         raise NotImplementedError
     
 class FakeMail(MailHandler):
@@ -13,7 +14,7 @@ class FakeMail(MailHandler):
     generates a string in email format
     """
 
-    def __generate_email(self, agent: AgentStub):
+    def __generate_email(self, agent: AgentStub, email_type: str):
 
 
         def parse_firstname(f) -> str:
@@ -54,17 +55,19 @@ class FakeMail(MailHandler):
 
         prefix = f"{email_parts[0]}{email_parts[1]}{email_parts[2]}"
 
-        return f"{prefix}@{self.config.email_type}"
+        return f"{prefix}@{email_type}"
     
 
-    def retrieve_email(self, agent: AgentStub):
-        return self.__generate_email(agent)
+    def retrieve_email(self, agent: AgentStub, email_type: str):
+        return self.__generate_email(agent, email_type=email_type)
     
 
 class DisposableMail(MailHandler):
     """
     Retrieves a disposable mail from https://temp-mail.org
     """
-
-    def retrieve_email(self, agent: AgentStub):
-        return super().retrieve_email(agent)
+    def __request_email(self):
+        return retrieve_disposable_mail()
+    
+    def retrieve_email(self, agent: AgentStub, email_type: str):
+        return self.__request_email()
