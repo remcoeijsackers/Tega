@@ -26,7 +26,9 @@ class Jackson:
     def click_and_return(self, kwargs):
         """
         """
+
         wait, value, elem, url, options = self.__fix_values(kwargs)
+
 
         self.driver.get(url)
 
@@ -55,6 +57,13 @@ class Jackson:
             time.sleep(wait)
 
         el.click()
+    
+    def find_by_xpath(self):
+        el = self.driver.find_element(by=By.XPATH, value="/html/body/div[1]/div/div/div[2]/div[1]/form/div[1]/div/input")
+        x = el.get_property("value")
+        print(x)
+        return x
+
 
     def scrape_and_return(self, kwargs):
         """
@@ -67,28 +76,16 @@ class Jackson:
         """
         wait, value, elem, url, options = self.__fix_values(kwargs)
 
-        if options:
-            if "same_url" in options and not options.get("same_url"):
-                self.driver.get(url)
+        if options and  "same_url" in options and not options.get("same_url"):
+            self.driver.get(url)
         else:
             self.driver.get(url)
         
-        time.sleep(5)
+        time.sleep(10)
 
-        if options:
-            if "elemtype" in options:
-                if options.get("elemtype") == "id":
-                    el = self.driver.find_element(By.ID, elem)
-                if options.get("elemtype") == "class":
-                    el = self.driver.find_element(By.CLASS_NAME, elem)
-        else:
-            el = self.driver.find_element(By.ID, elem)
-
-        if wait:
-            time.sleep(wait)
         try:
-            ret = el.get_attribute(value)
-            print(ret)
+            el = self.driver.find_element(by=By.XPATH, value="/html/body/div[1]/div/div/div[2]/div[1]/form/div[1]/div/input")
+            ret = el.get_property("value")
         except:
             print("no element to click")
             return None

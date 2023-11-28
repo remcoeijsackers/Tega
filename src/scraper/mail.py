@@ -2,9 +2,9 @@ from .spider import Jackson
 from selenium import webdriver
 from .build_session import build_driver
 
-def retrieve_disposable_mail():
+def retrieve_disposable_mail(headless=True):
     options = webdriver.FirefoxOptions()
-    options.headless = True
+    options.headless = headless
     x = Jackson(webdriver.Firefox(options=options))
 
     return x.scrape_and_return(

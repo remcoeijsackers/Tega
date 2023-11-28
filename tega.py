@@ -11,17 +11,22 @@ def cli():
 def mail(inbox):
     """ retrieve an burner email with optional inbox """
     if inbox:
-        x= MailMonitor()
-        print(x.check_mail())
+        monitor= MailMonitor()
+        print(monitor.check_mail())
     else:
-        retrieve_disposable_mail()
+        mail = retrieve_disposable_mail(False)
+        print(mail)
 
 @cli.command('account',  short_help='fake account')
-def account():
-    st = MakerSettings()
+@click.option("-f", "--format", type=str, show_default="current user", help="output format")
+def account(format):
+    st = MakerSettings(False)
     mk = Maker(st)
     ag = generate_sample_agent(mk)
-    ag.intro()
-    
+    if not format:
+        ag.intro()
+    if format == "json":
+        print(ag.to_json())
+
 if __name__ == '__main__':
     cli()

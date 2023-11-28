@@ -5,16 +5,17 @@ from .objects import Agent, AgentStub
 from .constants import male_first_names, last_names, letters, chars, get_first_based_nat,nationality
 
 class MakerSettings:
-    def __init__(self) -> None:
+    def __init__(self, store: bool) -> None:
         self.email_type = "@gmail.com"
         self.password_type = "all" # all | no_special
+        self.store = store
 
 
 class Maker:
     def __init__(self, settings: MakerSettings) -> None:
         self.settings = settings
 
-    def generate(self):
+    def generate(self, options: list or None = None):
         st = self.__generate_stub()
         st.age = self.__generate_age()
         st.email = self.__generate_email(st)
