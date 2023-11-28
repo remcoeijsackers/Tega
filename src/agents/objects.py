@@ -17,7 +17,7 @@ class Agent(AgentStub):
 
     @property
     def age(self):
-        x = datetime.datetime.now().date() - datetime.datetime.fromisoformat(self.birthdate).date()
+        x = datetime.datetime.now().date() - datetime.datetime.fromisoformat(str(self.birthdate)).date()
         yold = x/365
         return yold.days
     
@@ -28,7 +28,9 @@ class Agent(AgentStub):
         self.birthdate = str(self.birthdate)
         d = self.__dict__
         d["age"]= self.age
-        return json.dumps(d)
+  
+        json_formatted_str = json.dumps(d, indent=2)
+        return json_formatted_str
 
     def intro(self):
         "print the agents description"

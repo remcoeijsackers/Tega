@@ -47,9 +47,3 @@ def build_driver(dtype=None):
     session_file.close()
 
     return driver
-
-#driver = build_driver()
-#driver.get("https://google.com/")
-
-# write whatever automated thing you need to do
-# if you plan to re-run be sure that the actions are idempotent
