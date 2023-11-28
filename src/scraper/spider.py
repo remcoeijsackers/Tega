@@ -1,5 +1,4 @@
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 import time
 
@@ -61,18 +60,12 @@ class Jackson:
     def find_by_xpath(self):
         el = self.driver.find_element(by=By.XPATH, value="/html/body/div[1]/div/div/div[2]/div[1]/form/div[1]/div/input")
         x = el.get_property("value")
-        print(x)
         return x
 
 
     def scrape_and_return(self, kwargs):
         """
         driver.get("https://temp-mail.org")
-
-        time.sleep(10)
-        elem = driver.find_element(By.ID, "mail")
-        m = elem.get_attribute("value")
-        print(m)
         """
         wait, value, elem, url, options = self.__fix_values(kwargs)
 
@@ -86,13 +79,12 @@ class Jackson:
         try:
             el = self.driver.find_element(by=By.XPATH, value="/html/body/div[1]/div/div/div[2]/div[1]/form/div[1]/div/input")
             ret = el.get_property("value")
-        except:
-            print("no element to click")
-            return None
+        except Exception as e:
+            raise e("no element to click")
+ 
+        if options and options.get("clean_up", None):
+            self.driver.close()
 
-        if options:
-            if "clean_up" in options and options.get("clean_up"):
-                self.driver.close()
         return ret
     
 

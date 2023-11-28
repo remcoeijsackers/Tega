@@ -53,7 +53,7 @@ def get_first_based_nat(nat:str):
         return random.choice(str("Jack James Lachlan Benjamin Joshua Ryan John Patrick Samuel William").split(" "))
 
     if nat == "India": 
-        return random.choice(["Karna",	"Surya",	"Rama",	"Aarav",	"Vivaan",	"Krishna",	"Muhammed",	"Aryan",	"Lakhan",	"Jack"])
+        return random.choice(["Karna", "Surya", "Rama",	"Aarav", "Vivaan", "Krishna", "Muhammed", "Aryan", "Lakhan", "Jack"])
 
     if nat == "New Zealand":
         return random.choice(str("Joshua Jack Benjamin Samuel Daniel Jacob Ethan James Thomas Matthew").split(" "))

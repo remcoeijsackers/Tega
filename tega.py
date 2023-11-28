@@ -1,5 +1,5 @@
 import click
-from src.agents.namegen import Maker, MakerSettings, generate_sample_agent
+from src.agents.namegen import Maker, MakerConfig, generate_sample_agent
 from src.scraper import retrieve_disposable_mail, MailMonitor
 
 @click.group()
@@ -20,12 +20,13 @@ def mail(inbox):
 @cli.command('account',  short_help='fake account')
 @click.option("-f", "--format", type=str, show_default="current user", help="output format")
 def account(format):
-    st = MakerSettings(False)
-    mk = Maker(st)
+    mk = Maker(
+        MakerConfig()
+        )
     ag = generate_sample_agent(mk)
     if not format:
-        ag.intro()
-    if format == "json":
+        print(ag.to_json())
+    if format == "values":
         print(ag.to_json())
 
 if __name__ == '__main__':

@@ -1,6 +1,9 @@
 import datetime
 import json
 
+from ..utils.format import remove_null
+
+
 class AgentStub():
     def __init__(self, **kwargs) -> None:
         self.first_name = kwargs.get("first_name",None)
@@ -21,23 +24,21 @@ class Agent(AgentStub):
         yold = x/365
         return yold.days
     
+    @property
+    def date_of_birth(self):
+        return str(self.birthdate.date())
+    
     def name(self):
         return f"{self.first_name} {self.initial if self.initial else ''}{' ' if self.initial else ''}{self.last_name}"
 
-    def to_json(self):
-        self.birthdate = str(self.birthdate)
+    def to_json(self) -> json:
+        
         d = self.__dict__
-        d["age"]= self.age
-  
-        json_formatted_str = json.dumps(d, indent=2)
-        return json_formatted_str
 
-    def intro(self):
-        "print the agents description"
-        print(self.name())
-        print(self.nat)
-        print(self.age)
-        print(f"{self.birthdate.date()}")
-        print(self.email)
-        print(self.password)
-        print("\n")
+        d["age"] = self.age
+        d["birthdate"] = self.date_of_birth
+
+        cleaned = remove_null(d)
+  
+        json_formatted_str = json.dumps(cleaned, indent=2)
+        return json_formatted_str

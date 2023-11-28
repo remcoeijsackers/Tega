@@ -1,4 +1,4 @@
-# stolen from https://gist.github.com/stevenctl/d34e0494843479b2a12b9e58cf8d645e
+# from https://gist.github.com/stevenctl/d34e0494843479b2a12b9e58cf8d645e
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.firefox.options import Options as firefox_options
