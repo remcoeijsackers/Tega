@@ -34,7 +34,7 @@ class Agent(Profile):
     def name(self):
         return f"{self.first_name} {self.initial if self.initial else ''}{' ' if self.initial else ''}{self.last_name}"
 
-    def to_json(self) -> json:
+    def to_json(self, indented: bool = True) -> json:
         
         d = self.__dict__
 
@@ -43,5 +43,5 @@ class Agent(Profile):
 
         cleaned = remove_null(d)
   
-        json_formatted_str = json.dumps(cleaned, indent=2)
+        json_formatted_str = json.dumps(cleaned, indent=2 if indented else 0)
         return json_formatted_str
