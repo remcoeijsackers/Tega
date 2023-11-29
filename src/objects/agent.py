@@ -4,7 +4,7 @@ import json
 from ..utils.format import remove_null
 
 
-class AgentStub():
+class Profile():
     def __init__(self, **kwargs) -> None:
         self.first_name = kwargs.get("first_name",None)
         self.last_name = kwargs.get("last_name",None)
@@ -14,7 +14,7 @@ class AgentStub():
         self.password =kwargs.get("password", None)
         self.nat = kwargs.get("nat", None)
 
-class Agent(AgentStub):
+class Agent(Profile):
     def __init__(self, **kwargs) -> None:
         super().__init__(**kwargs)
 

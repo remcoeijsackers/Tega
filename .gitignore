@@ -1,1 +1,7 @@
 geckodriver.log
+src/scraper/__pycache__
+src/providers/__pycache__
+src/utils/__pycache__
+venv
+src/agents/__pycache__
+src/__pycache__

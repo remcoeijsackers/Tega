@@ -17,24 +17,24 @@ def __random_string(length: int, **kwargs):
     if 'punctuation' in kwargs and kwargs['punctuation'] == True:
         characters += string.punctuation
         
-    passwordStub = secrets.choice(string.ascii_uppercase)
-    passwordStub += secrets.choice(string.digits)
-    passwordStub += secrets.choice(string.digits)
+    pass_stub = secrets.choice(string.ascii_uppercase)
+    pass_stub += secrets.choice(string.digits)
+    pass_stub += secrets.choice(string.digits)
 
     if 'lowercase' in kwargs and kwargs['lowercase'] == True:
-        passwordStub += secrets.choice(string.ascii_lowercase)
+        pass_stub += secrets.choice(string.ascii_lowercase)
 
     if 'punctuation' in kwargs and kwargs['punctuation'] == True:
         characters += secrets.choice(string.punctuation)
 
     for _ in range(length - 4):
-        passwordStub += secrets.choice(characters)
+        pass_stub += secrets.choice(characters)
 
-    passwordList = list(passwordStub)
+    password_parts = list(pass_stub)
 
-    secrets.SystemRandom().shuffle(passwordList)
+    secrets.SystemRandom().shuffle(password_parts)
 
-    return ''.join(passwordList)
+    return ''.join(password_parts)
 
 
 def generate_password(chars: int =20):

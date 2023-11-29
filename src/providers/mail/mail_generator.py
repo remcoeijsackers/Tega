@@ -1,20 +1,25 @@
 import datetime
 import random
-from src.agents.objects import AgentStub
+from src.objects.agent import Profile
 from src.scraper.mail import retrieve_disposable_mail
 
 
-class MailHandler(object):
+class MailGenerator(object):
 
-    def retrieve_email(self, agent: AgentStub, email_type: str):
+    def __init__(self, email_type) -> None:
+        self.email_type = email_type
+
+    def retrieve_email(self, agent: Profile):
         raise NotImplementedError
     
-class FakeMail(MailHandler):
+class FakeMail(MailGenerator):
     """
     generates a string in email format
     """
+    def __init__(self, email_type) -> None:
+        self.email_type = email_type
 
-    def __generate_email(self, agent: AgentStub, email_type: str):
+    def __generate_email(self, agent: Profile, email_type: str):
 
 
         def parse_firstname(f) -> str:
@@ -26,7 +31,7 @@ class FakeMail(MailHandler):
             op = [f"{s.year}", f"{s.year}.{s.month}", f"{str(s.year)[2:]}", f"{s.year}_{s.month}", ""]
             return random.choice(op)
 
-        def parse_lastname(l: AgentStub) -> str:
+        def parse_lastname(l: Profile) -> str:
             op = [str(l.last_name)[0:1], f"{str(l.last_name)[0:1]}", str(l.last_name), str(l.last_name).lower()]
             if l.initial != None:
                 op.append(f"{str(l.initial).upper()}.{str(l.last_name)}")
@@ -58,16 +63,19 @@ class FakeMail(MailHandler):
         return f"{prefix}@{email_type}"
     
 
-    def retrieve_email(self, agent: AgentStub, email_type: str):
-        return self.__generate_email(agent, email_type=email_type)
+    def retrieve_email(self, agent: Profile):
+        return self.__generate_email(agent, email_type=self.email_type)
     
 
-class DisposableMail(MailHandler):
+class DisposableMail(MailGenerator):
     """
     Retrieves a disposable mail from https://temp-mail.org
     """
+    def __init__(self, email_type) -> None:
+        self.email_type = email_type
+
     def __request_email(self):
         return retrieve_disposable_mail()
     
-    def retrieve_email(self, agent: AgentStub, email_type: str):
+    def retrieve_email(self, agent: Profile):
         return self.__request_email()
