@@ -12,7 +12,8 @@ class Profile():
         self.birthdate: datetime.datetime | None = kwargs.get("age", None)
         self.email =kwargs.get("email", None)
         self.password =kwargs.get("password", None)
-        self.nat = kwargs.get("nat", None)
+        self.nationality = kwargs.get("nationality", None)
+        self.addresses = kwargs.get("addresses", None)
 
 class Agent(Profile):
     def __init__(self, **kwargs) -> None:
@@ -34,14 +35,26 @@ class Agent(Profile):
     def name(self):
         return f"{self.first_name} {self.initial if self.initial else ''}{' ' if self.initial else ''}{self.last_name}"
 
-    def to_json(self, indented: bool = True) -> json:
-        
+    def __clean_data(self) -> dict:
+                
         d = self.__dict__
 
         d["age"] = self.age
         d["birthdate"] = self.date_of_birth
 
-        cleaned = remove_null(d)
+        return remove_null(d)
+
+
+    def to_json(self, indented: bool = True) -> json:
   
+        cleaned = self.__clean_data()
+
         json_formatted_str = json.dumps(cleaned, indent=2 if indented else 0)
         return json_formatted_str
+    
+
+    def to_dict(self) -> dict:
+  
+        cleaned = self.__clean_data()
+
+        return cleaned

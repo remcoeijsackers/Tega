@@ -30,6 +30,10 @@ class UserGenerator:
         return Agent(**agent_object.__dict__)
 
     @staticmethod
+    def __generate_password() -> str:
+        return generate_password(20)
+
+    @staticmethod
     def __generate_age():
         y = random.randrange(1980, 2001)
         m = random.randrange(1,12)
@@ -44,9 +48,6 @@ class UserGenerator:
             agent=agent
             )
     
-    @staticmethod
-    def __generate_password() -> str:
-        return generate_password(20)
 
 def generate_sample_agent(maker: UserGenerator) -> Agent:
     agent_object = maker.generate()

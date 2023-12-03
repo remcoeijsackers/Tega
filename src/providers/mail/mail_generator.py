@@ -1,5 +1,7 @@
 import datetime
 import random
+import re
+
 from src.objects.agent import Profile
 from src.scraper.mail import retrieve_disposable_mail
 
@@ -19,11 +21,15 @@ class FakeMail(MailGenerator):
     def __init__(self, email_type) -> None:
         self.email_type = email_type
 
+    @staticmethod
+    def __only_alphanumeric(item):
+        return re.sub(pattern='^\w+$', string=item, repl="")
+
     def __generate_email(self, agent: Profile, email_type: str):
 
 
         def parse_firstname(f) -> str:
-            op = [str(f).lower(), str(f),f"{random.randrange(0, 100)}"]
+            op = [str(f).lower(), str(f), str(f)[0:3]]
             name = random.choice(op)
             return name
         
@@ -32,11 +38,11 @@ class FakeMail(MailGenerator):
             return random.choice(op)
 
         def parse_lastname(l: Profile) -> str:
-            op = [str(l.last_name)[0:1], f"{str(l.last_name)[0:1]}", str(l.last_name), str(l.last_name).lower()]
+            op = [str(self.__only_alphanumeric(l.last_name))[0:1], f"{str(self.__only_alphanumeric(l.last_name)[0:1])}", str(self.__only_alphanumeric(l.last_name)), str(self.__only_alphanumeric(l.last_name)).lower()]
             if l.initial != None:
                 op.append(f"{str(l.initial).upper()}.{str(l.last_name)}")
                 op.append(f"{str(l.initial).upper()}.{str(l.last_name)[0:1]}")
-            return random.choice(op)
+            return str(random.choice(op)).replace(" ", "")
         
         def get_mail_prefix():
             first_part = parse_firstname(agent.first_name)
@@ -50,7 +56,7 @@ class FakeMail(MailGenerator):
             at least one of the parts should be longer than 3, 
             to be somewhat sensible.
             """
-            return sum(1 for element in lst if len(element) > 3) >= 2
+            return sum(1 for element in lst if len(element) >= 3) >= 2
 
         email_parts = get_mail_prefix()
 
