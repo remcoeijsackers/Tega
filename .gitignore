@@ -9,3 +9,5 @@ src/providers/profile/__pycache__
 src/objects/__pycache__
 src/constants/__pycache__
 src/providers/mail/__pycache__
+.vscode
+src/commands/__pycache__
