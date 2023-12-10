@@ -1,9 +1,11 @@
 from src.agents.user_service import UserGenerator, MakerConfig, generate_sample_agent
+from src.objects.agent import Agent
 from src.providers.mail import retrieve_mail_provider
 from src.providers.profile import retrieve_profile_provider
+from typing import List
 
 
-def generate_account(mail="f", nationality="r", gender=None, count=1, logging="pretty"):
+def generate_account(mail="f", nationality="r", gender=None, count=1, logging="pretty") -> List[dict]:
     
     mail_handler = retrieve_mail_provider(mail)
     profile_handler = retrieve_profile_provider(nationality, gender)

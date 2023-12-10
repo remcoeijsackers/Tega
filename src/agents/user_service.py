@@ -20,7 +20,7 @@ class UserGenerator:
     def __init__(self, settings: MakerConfig) -> None:
         self.config = settings
 
-    def generate(self):
+    def generate(self) -> Agent:
         agent_object = self.generate_profile()
 
         agent_object.age = self.__generate_age()

@@ -26,3 +26,7 @@ stop:
 .PHONY: clean
 clean: stop
 	docker rm $(shell docker ps -a -q --filter ancestor=tega-app)
+
+.PHONY: test
+test: 
+	docker run -p 9000:9000 tega-app
