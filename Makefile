@@ -15,7 +15,7 @@ build:
 # Run Docker container
 .PHONY: run
 run: build
-	docker run -p 9000:9000 tega-app 
+	docker run --rm -p 9000:9000 tega-app 
 
 # Stop Docker container
 .PHONY: stop
@@ -29,4 +29,4 @@ clean: stop
 
 .PHONY: test
 test: 
-	docker run -p 9000:9000 tega-app
+	docker run --rm tega-app python -m unittest discover -s tests

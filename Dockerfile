@@ -18,7 +18,7 @@ WORKDIR /code
 COPY . /code
 
 # Define environment variable
-#ENV FLASK_APP app
+ENV FLASK_APP tega
 
 # Run app.py when the container launches
 
