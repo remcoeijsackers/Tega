@@ -1,13 +1,12 @@
 # Use an official Python runtime as a parent image
 FROM python:3.13-rc-bookworm
 
-ADD dev_requirements.txt /dev_requirements.txt
+ADD requirements.txt /requirements.txt
 
 # Install any needed packages specified in requirements.txt
-RUN pip install --no-cache-dir -r dev_requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Make port 5000 available to the world outside this container
-EXPOSE 5000
+EXPOSE 9000
 
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
@@ -19,8 +18,10 @@ WORKDIR /code
 COPY . /code
 
 # Define environment variable
-ENV FLASK_APP app
+#ENV FLASK_APP app
 
 # Run app.py when the container launches
-ENTRYPOINT ["tail", "-f", "/dev/null"]
-#CMD ["python", "-m", "flask", "run"]
+
+CMD ["python", "-m", "flask", "run", "--port", "9000","--host", "0.0.0.0", "--debug"]
+
+#CMD ["python", "-m", "flask", "--app", "src/app", "run", "--port", "9000", "--debug"]

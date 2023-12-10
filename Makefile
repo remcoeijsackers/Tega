@@ -10,12 +10,12 @@ all: build run
 # Build Docker image
 .PHONY: build
 build:
-	docker build docker/environment/$(environment) -t tega-app
+	docker build . -t tega-app
 
 # Run Docker container
 .PHONY: run
 run: build
-	docker run -p 9000:9000 tega-app
+	docker run -p 9000:9000 tega-app 
 
 # Stop Docker container
 .PHONY: stop
