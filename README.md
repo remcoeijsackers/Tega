@@ -4,5 +4,7 @@ Generate fake accounts for testing.
 
 ## TODO:
 
-- Test runner (for docker)
-
+- Cleanup
+- update Readme
+- Combine commands & tega.py
+- Limit burner email generator to only work in cli (does not work in flask)
