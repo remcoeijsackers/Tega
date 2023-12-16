@@ -22,6 +22,14 @@ class FakeMail(MailGenerator):
         self.email_type = email_type
 
     @staticmethod
+    def __is_sensible_email(lst):
+        """
+        at least one of the parts should be longer than 3, 
+        to be somewhat sensible.
+        """
+        return sum(1 for element in lst if len(element) >= 3) >= 2
+
+    @staticmethod
     def __only_alphanumeric(item):
         return re.sub(pattern='^\w+$', string=item, repl="")
 
@@ -51,16 +59,10 @@ class FakeMail(MailGenerator):
 
             return [first_part, second_part, third_part]
 
-        def is_sensible_email(lst):
-            """
-            at least one of the parts should be longer than 3, 
-            to be somewhat sensible.
-            """
-            return sum(1 for element in lst if len(element) >= 3) >= 2
 
         email_parts = get_mail_prefix()
 
-        while not is_sensible_email(email_parts):
+        while not self.__is_sensible_email(email_parts):
             email_parts = get_mail_prefix()
             
 
@@ -83,6 +85,14 @@ class CleanFakeMail(MailGenerator):
     def __only_alphanumeric(item):
         return re.sub(pattern='^\w+$', string=item, repl="")
 
+    @staticmethod
+    def __is_sensible_email(lst):
+        """
+        at least one of the parts should be longer than 3, 
+        to be somewhat sensible.
+        """
+        return sum(1 for element in lst if len(element) >= 3) >= 2
+
     def __generate_email(self, agent: Profile, email_type: str):
 
 
@@ -96,7 +106,8 @@ class CleanFakeMail(MailGenerator):
             return random.choice(op)
 
         def parse_lastname(l: Profile) -> str:
-            op = [str(self.__only_alphanumeric(l.last_name)), str(self.__only_alphanumeric(l.last_name)).lower()]
+            op = [str(self.__only_alphanumeric(l.last_name)),
+                  str(self.__only_alphanumeric(l.last_name)).lower()]
             if l.initial != None:
                 op.append(f".{str(l.initial).upper()}.{str(l.last_name)}")
             return str(random.choice(op)).replace(" ", "")
@@ -108,17 +119,10 @@ class CleanFakeMail(MailGenerator):
 
             return [first_part, second_part, third_part]
 
-
-        def is_sensible_email(lst):
-            """
-            at least one of the parts should be longer than 3, 
-            to be somewhat sensible.
-            """
-            return sum(1 for element in lst if len(element) >= 3) >= 2
-
+        
         email_parts = get_mail_prefix()
 
-        while not is_sensible_email(email_parts):
+        while not self.__is_sensible_email(email_parts):
             email_parts = get_mail_prefix()
 
         prefix = f"{email_parts[0]}{email_parts[1]}{email_parts[2]}"
