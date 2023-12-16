@@ -3,6 +3,7 @@ from unittest import TestCase
 
 from src.providers.mail import retrieve_mail_provider
 from src.providers.mail.mail_generator import MailGenerator, Profile, DisposableMail, FakeMail
+from src.providers.password import retrieve_password_provider
 from src.providers.profile import retrieve_profile_provider
 
 from src.agents.user_service import UserGenerator, MakerConfig, generate_sample_agent
@@ -32,11 +33,13 @@ class TestMail(TestCase):
         
         mail_handler = retrieve_mail_provider(name="f")
         profile_handler = retrieve_profile_provider()
+        password_handler = retrieve_password_provider(type="r", length=20)
     
         generator = UserGenerator(
             MakerConfig(
                 mail_generator = mail_handler,
-                profile_generator=profile_handler
+                profile_generator=profile_handler,
+                password_generator=password_handler
             )
         )
 
@@ -54,11 +57,13 @@ class TestMail(TestCase):
         
         mail_handler = retrieve_mail_provider(name="f")
         profile_handler = retrieve_profile_provider()
+        password_handler = retrieve_password_provider(type="r", length=20)
     
         generator = UserGenerator(
             MakerConfig(
                 mail_generator = mail_handler,
-                profile_generator=profile_handler
+                profile_generator=profile_handler,
+                password_generator=password_handler
             )
         )
 
