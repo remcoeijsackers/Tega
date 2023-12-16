@@ -17,7 +17,8 @@ def account():
         nationality=retrieve("nationality") if retrieve("nationality") else "r",
         gender=retrieve("gender") if retrieve("gender") else None, 
         count= retrieve("count") if retrieve("count") else 1,
-        logging=retrieve("logging")
+        logging=retrieve("logging"),
+        password=retrieve("password") if retrieve("password") else "r"
         )
 
 

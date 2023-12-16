@@ -3,15 +3,16 @@ import datetime
 from dataclasses import dataclass
 
 from src.providers.mail.mail_generator import MailGenerator
+from src.providers.password.password_generator import PasswordGenerator
 from src.providers.profile.profile_generator import ProfileGenerator
 
 from src.objects.agent import Agent, Profile
-from src.utils.passwords import generate_password
 
 @dataclass
 class MakerConfig(object):
     mail_generator: MailGenerator
     profile_generator: ProfileGenerator
+    password_generator: PasswordGenerator
 
 class UserGenerator:
     """
@@ -22,16 +23,13 @@ class UserGenerator:
 
     def generate(self) -> Agent:
         agent_object = self.generate_profile()
-
         agent_object.age = self.__generate_age()
         agent_object.email = self.generate_email(agent_object)
-        agent_object.password = self.__generate_password()
+
+        agent_object.password = self.generate_password()
         
         return Agent(**agent_object.__dict__)
 
-    @staticmethod
-    def __generate_password() -> str:
-        return generate_password(20)
 
     @staticmethod
     def __generate_age():
@@ -40,10 +38,13 @@ class UserGenerator:
         d = random.randrange(1,27)
         return datetime.datetime(y,m,d)
 
+    def generate_password(self) -> str:
+        return self.config.password_generator.retrieve_password()
+
     def generate_profile(self) -> Profile:
         return self.config.profile_generator.retrieve_profile()
 
-    def generate_email(self, agent: Profile):
+    def generate_email(self, agent: Profile) -> str:
         return self.config.mail_generator.retrieve_email(
             agent=agent
             )

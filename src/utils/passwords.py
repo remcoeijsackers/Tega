@@ -37,9 +37,9 @@ def __random_string(length: int, **kwargs):
     return ''.join(password_parts)
 
 
-def generate_password(chars: int =20):
+def generate_password(chars: int = 20, lowercase=True, punctuation=True):
         """
         Generates a password with at least one uppercase,
         one lowercase, one digit, and one punctuation.
         """
-        return __random_string(chars, lowercase=True, punctuation=True)
+        return __random_string(chars, lowercase=lowercase, punctuation=punctuation)
