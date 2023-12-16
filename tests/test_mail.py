@@ -2,7 +2,7 @@ import re
 from unittest import TestCase
 
 from src.providers.mail import retrieve_mail_provider
-from src.providers.mail.mail_generator import MailGenerator, Profile, DisposableMail, FakeMail
+from src.providers.mail.mail_generator import DisposableMail, FakeMail
 from src.providers.password import retrieve_password_provider
 from src.providers.profile import retrieve_profile_provider
 
