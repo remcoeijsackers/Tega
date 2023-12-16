@@ -1,7 +1,9 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 import time
+import logging
 
+logger = logging.getLogger(__name__)
 class Jackson:
     def __init__(self, driver: webdriver.Firefox) -> None:
         self.driver = driver
@@ -40,17 +42,17 @@ class Jackson:
                     try:
                         el = self.driver.find_element(By.ID, elem)
                     except:
-                        print(f"could not find id {options.get('elemtype')}")
+                        logger.warning(f"could not find id {options.get('elemtype')}")
                 if options.get("elemtype") == "class":
                     try:
                         el = self.driver.find_element(By.CLASS_NAME, elem)
                     except:
-                        print(f"could not find class {options.get('elemtype')}")
+                        logger.warning(f"could not find class {options.get('elemtype')}")
         else:
             try:
                 el = self.driver.find_element(By.ID, elem)
             except:
-                print(f"could not find id {options.get('elemtype')}")
+                logger.error(f"could not find id {options.get('elemtype')}")
 
         if wait:
             time.sleep(wait)

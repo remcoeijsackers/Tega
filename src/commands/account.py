@@ -4,22 +4,26 @@ from src.providers.mail import retrieve_mail_provider
 from src.providers.password import retrieve_password_provider
 from src.providers.profile import retrieve_profile_provider
 from typing import List
+import logging
 
+logger = logging.getLogger(__name__)
 
 def generate_account(
-        mail="f",
-        nationality="r",
-        gender=None,
-        count=1,
-        logging="pretty",
-        password="r",
-        password_length=20,
-        age="r"
+        mail,
+        email_type,
+        nationality,
+        gender,
+        count,
+        logging,
+        password,
+        password_length,
+        age
         ) -> List[dict]:
     
-    mail_handler = retrieve_mail_provider(mail)
+
+    mail_handler = retrieve_mail_provider(mail, email_type)
     profile_handler = retrieve_profile_provider(nationality, gender)
-    password_handler = retrieve_password_provider(password, password_length)
+    password_handler = retrieve_password_provider(password, int(password_length))
     age_handler = retrieve_age_provider(age)
 
     generator = UserGenerator(
@@ -42,10 +46,10 @@ def generate_account(
     if logging == "pretty":
         log = [i.to_json() for i in agents]
         for i in log:
-            print(i)
+            logger.info(i)
 
     if logging == "output":
-        print(agent_objects)
+        logger.info(agent_objects)
         
 
     return agent_objects

@@ -11,7 +11,7 @@ class MailFactory(ObjectFactory):
             return CleanFakeMail(email_type)
         if value in ["disposable", "d"]:
             return DisposableMail(email_type)
-        return MailGenerator()
+        return MailGenerator(email_type)
 
 def retrieve_mail_provider(name, email_type="gmail.com") -> MailGenerator:
     return MailFactory().retrieve_provider(name, email_type)

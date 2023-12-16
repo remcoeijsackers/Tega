@@ -9,3 +9,5 @@ Generate fake accounts for testing.
 - update Readme
 - Combine commands & tega.py
 - Limit burner email generator to only work in cli (does not work in flask)
+
+python3 -m tega account-group create_accounts

@@ -13,6 +13,7 @@ class Profile():
         self.email =kwargs.get("email", None)
         self.password =kwargs.get("password", None)
         self.nationality = kwargs.get("nationality", None)
+        self.gender = kwargs.get("gender", None)
         self.addresses = kwargs.get("addresses", None)
 
 class Agent(Profile):
