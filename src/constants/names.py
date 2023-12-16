@@ -1,27 +1,29 @@
 import random 
 
+# Surnames
+
 usa_surnames = [
-"Smith",
-"Johnson",
-"Williams",
-"Brown",
-"Jones",
-"Miller",
-"Davis",
-"Wilson",
-"Anderson",
-"Taylor",
+    "Smith",
+    "Johnson",
+    "Williams",
+    "Brown",
+    "Jones",
+    "Miller",
+    "Davis",
+    "Wilson",
+    "Anderson",
+    "Taylor",
 ]
 
 indian_surnames = [
-"Acharya",
-"Anand",
-"Anthony",
-"Arya",
-"Azad",
-"Babu",
-"Bakshi",
-"Balakrishnan"
+    "Acharya",
+    "Anand",
+    "Anthony",
+    "Arya",
+    "Azad",
+    "Babu",
+    "Bakshi",
+    "Balakrishnan"
 ]
 
 newzealand_surnames = [
@@ -31,7 +33,14 @@ newzealand_surnames = [
 	"Alexander"
 ]
 
-dutch_surnames = ["De Jong", "Jansen", "De Vries", "Bakker", "De Wit", "Klaasen"]
+dutch_surnames = [
+    "De Jong",
+    "Jansen",
+    "De Vries",
+    "Bakker",
+    "De Wit",
+    "Klaasen"
+]
 
 england_surnames = [
     "Jones",
@@ -96,43 +105,76 @@ australian_surnames = [
     "Lee",
 ]
 
+# First Names
+
 usa_male_firstnames = [
-"James",
-"John",
-"Robert",
-"Michael",
-"William",
-"David",
-"Richard",
-"Charles"
+    "James",
+    "John",
+    "Robert",
+    "Michael",
+    "William",
+    "David",
+    "Richard",
+    "Charles"
 ]
 
 usa_female_firstnames = [
-"Olivia",
-"Emma",
-"Charlotte",
-"Amelia",
-"Sophia",
-"Isabella",
-"Ava",
-"Mia"
+    "Olivia",
+    "Emma",
+    "Charlotte",
+    "Amelia",
+    "Sophia",
+    "Isabella",
+    "Ava",
+    "Mia"
 ]
 
-australia_male_firstnames = ['Jack', 'James', 'Lachlan', 'Benjamin', 'Joshua', 'Ryan', 'John', 'Patrick', 'Samuel', 'William']
-australia_female_firstnames = [ "Charlotte", "Ava", "Harper", "Willow", "Isla", "Olivia"]
+australia_male_firstnames = [
+    'Jack',
+    'James',
+    'Lachlan',
+    'Benjamin',
+    'Joshua',
+    'Ryan',
+    'John',
+    'Patrick',
+    'Samuel',
+    'William'
+]
+
+australia_female_firstnames = [
+    "Charlotte",
+    "Ava",
+    "Harper",
+    "Willow",
+    "Isla",
+    "Olivia"
+]
 
 newzealand_female_firstnames = [
-"Mary",
-"Margaret",
-"Elizabeth",
-"Sarah",
-"Patricia",
-"Catherine",
-"Susan",
-"Helen",
-"Emma"
+    "Mary",
+    "Margaret",
+    "Elizabeth",
+    "Sarah",
+    "Patricia",
+    "Catherine",
+    "Susan",
+    "Helen",
+    "Emma"
 ]
-newzealand_male_firstnames = ['Joshua', 'Jack', 'Benjamin', 'Samuel', 'Daniel', 'Jacob', 'Ethan', 'James', 'Thomas', 'Matthew']
+
+newzealand_male_firstnames = [
+    'Joshua',
+    'Jack',
+    'Benjamin',
+    'Samuel',
+    'Daniel',
+    'Jacob',
+    'Ethan',
+    'James',
+    'Thomas',
+    'Matthew'
+]
 
 french_female_firstnames = [
     "Chloe",
@@ -169,28 +211,28 @@ england_male_firstnames = [
 ]
 
 indian_female_firstnames = [
-"Amulya",
-"Aniya",
-"Anushka",
-"Aria",
-"Ayla",
-"Devina",
-"Divya",
-"Eesha",
-"Farida",
+    "Amulya",
+    "Aniya",
+    "Anushka",
+    "Aria",
+    "Ayla",
+    "Devina",
+    "Divya",
+    "Eesha",
+    "Farida",
 ]
 
 indian_male_firstnames = [
-"Arjun",
-"Aum",
-"Ishan",
-"Krish",
-"Moksh",
-"Nitin",
-"Parin",
-"Rishi",
-"Shankar",
-"Veer"
+    "Arjun",
+    "Aum",
+    "Ishan",
+    "Krish",
+    "Moksh",
+    "Nitin",
+    "Parin",
+    "Rishi",
+    "Shankar",
+    "Veer"
 ]
 
 turkey_female_firstnames = [
@@ -212,7 +254,18 @@ turkey_male_firstnames = [
     "Emre"
 ]
 
-phillippines_male_firstnames = ['Michael', 'Ronald', 'Ryan', 'Joseph', 'Joel', 'Jeffrey', 'Marlon', 'Richard', 'Noel', 'Jonathan']
+phillippines_male_firstnames = [
+    'Michael',
+    'Ronald',
+    'Ryan',
+    'Joseph',
+    'Joel', 
+    'Jeffrey',
+    'Marlon',
+    'Richard',
+    'Noel',
+    'Jonathan'
+]
 
 phillippines_female_firstnames = [
     "Althea",
@@ -223,11 +276,56 @@ phillippines_female_firstnames = [
     "Nathalie",
 ]
 
-dutch_male_firstnames = ['Liam', 'Lucas', 'Daan', 'Finn', 'Levi', 'James', 'Tom', 'Luuk', 'Jasper', 'Henk']
-dutch_female_firstnames = ['Emma', 'Julia', 'Mila', 'Tess', 'Sophie', 'Zoe', 'Sara', 'Nora']
+dutch_male_firstnames = [
+    'Liam',
+    'Lucas',
+    'Daan',
+    'Finn',
+    'Levi',
+    'James',
+    'Tom',
+    'Luuk',
+    'Jasper',
+    'Henk'
+]
 
-german_male_firstnames = ['Ernst', 'Friedrich', 'Hans', 'Heinrich', 'Hermann', 'Karl', 'Otto', 'Paul', 'Walter', 'Wilhelm']
-german_female_firstnames = ['Anna', 'Hannah', 'Julia', 'Lara', 'Laura', 'Lea', 'Lena', 'Lisa', 'Michelle', 'Sarah']
+dutch_female_firstnames = [
+    'Emma',
+    'Julia',
+    'Mila',
+    'Tess',
+    'Sophie',
+    'Zoe',
+    'Sara',
+    'Nora'
+]
+
+german_male_firstnames = [
+    'Ernst',
+    'Friedrich',
+    'Hans',
+    'Heinrich',
+    'Hermann',
+    'Karl',
+    'Otto',
+    'Paul',
+    'Walter', 
+    'Wilhelm'
+]
+
+german_female_firstnames = [
+    'Anna',
+    'Hannah',
+    'Julia',
+    'Lara',
+    'Laura',
+    'Lea',
+    'Lena',
+    'Lisa',
+    'Michelle',
+    'Sarah'
+]
+
 nationality = [
     "Dutch",
     "Australia",
@@ -241,13 +339,14 @@ nationality = [
     "India"
 ]
 
-# all names
+# All names
 
 male_first_names = dutch_male_firstnames + australia_male_firstnames \
                     + newzealand_male_firstnames + phillippines_male_firstnames \
                     + turkey_male_firstnames + french_male_firstnames \
                     + usa_male_firstnames + england_male_firstnames \
                     + german_male_firstnames + indian_male_firstnames
+
 female_first_names = dutch_female_firstnames + australia_female_firstnames \
                     + newzealand_female_firstnames + phillippines_female_firstnames \
                     + turkey_female_firstnames + french_female_firstnames \
@@ -263,6 +362,7 @@ last_names = dutch_surnames + australian_surnames \
 letters= "abcdefghijlkmnoptuvw"
 
 chars = "!@#$%^&*"
+
 
 def get_last_based_nat(nat:str) -> str:
     if nat == "Turkey":
@@ -288,7 +388,7 @@ def get_last_based_nat(nat:str) -> str:
     return random.choice(last_names)
     
 
-def get_first_based_nat(nat:str, gender:str ="") -> str:
+def get_first_based_nat(nat:str, gender:str = "") -> str:
 
     if nat == "France":
         if gender == "m":
