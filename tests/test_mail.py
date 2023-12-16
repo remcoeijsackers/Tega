@@ -1,5 +1,6 @@
 import re
 from unittest import TestCase
+from src.providers.age import retrieve_age_provider
 
 from src.providers.mail import retrieve_mail_provider
 from src.providers.mail.mail_generator import DisposableMail, FakeMail
@@ -34,12 +35,14 @@ class TestMail(TestCase):
         mail_handler = retrieve_mail_provider(name="f")
         profile_handler = retrieve_profile_provider()
         password_handler = retrieve_password_provider(type="r", length=20)
+        age_handler = retrieve_age_provider(type="r")
     
         generator = UserGenerator(
             MakerConfig(
                 mail_generator = mail_handler,
-                profile_generator=profile_handler,
-                password_generator=password_handler
+                profile_generator = profile_handler,
+                password_generator = password_handler,
+                age_generator = age_handler
             )
         )
 
@@ -58,12 +61,14 @@ class TestMail(TestCase):
         mail_handler = retrieve_mail_provider(name="f")
         profile_handler = retrieve_profile_provider()
         password_handler = retrieve_password_provider(type="r", length=20)
+        age_handler = retrieve_age_provider(type="r")
     
         generator = UserGenerator(
             MakerConfig(
                 mail_generator = mail_handler,
-                profile_generator=profile_handler,
-                password_generator=password_handler
+                profile_generator = profile_handler,
+                password_generator = password_handler,
+                age_generator = age_handler
             )
         )
 

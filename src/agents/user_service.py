@@ -5,6 +5,7 @@ from dataclasses import dataclass
 from src.providers.mail.mail_generator import MailGenerator
 from src.providers.password.password_generator import PasswordGenerator
 from src.providers.profile.profile_generator import ProfileGenerator
+from src.providers.age.age_generator import AgeGenerator
 
 from src.objects.agent import Agent, Profile
 
@@ -13,6 +14,7 @@ class MakerConfig(object):
     mail_generator: MailGenerator
     profile_generator: ProfileGenerator
     password_generator: PasswordGenerator
+    age_generator: AgeGenerator
 
 class UserGenerator:
     """
@@ -23,7 +25,7 @@ class UserGenerator:
 
     def generate(self) -> Agent:
         agent_object = self.generate_profile()
-        agent_object.age = self.__generate_age()
+        agent_object.age = self.generate_age()
         agent_object.email = self.generate_email(agent_object)
 
         agent_object.password = self.generate_password()
@@ -31,12 +33,8 @@ class UserGenerator:
         return Agent(**agent_object.__dict__)
 
 
-    @staticmethod
-    def __generate_age():
-        y = random.randrange(1980, 2001)
-        m = random.randrange(1,12)
-        d = random.randrange(1,27)
-        return datetime.datetime(y,m,d)
+    def generate_age(self):
+        return self.config.age_generator.retrieve_age()
 
     def generate_password(self) -> str:
         return self.config.password_generator.retrieve_password()
