@@ -13,8 +13,8 @@ build:
 	docker build . -t tega-app
 
 # Run Docker container
-.PHONY: run
-run: build
+.PHONY: up
+up: build
 	docker run --rm -p 9000:9000 tega-app 
 
 # Stop Docker container

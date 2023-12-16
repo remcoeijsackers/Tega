@@ -1,4 +1,3 @@
-import click
 from flask import Flask
 from src.commands import generate_account
 from flask import request
@@ -11,8 +10,6 @@ def account():
 
     def retrieve(name):
         if name in args:
-            if name == "count":
-                return int(request.args.get(name))
             return request.args.get(name)
         
     return generate_account(
