@@ -1,11 +1,3 @@
-VENV = venv
-PYTHON = $(VENV)/bin/python3
-PIP = $(VENV)/bin/pip
-environment = local
-
-.PHONY: all
-all: build run
-
 .PHONY: build
 build:
 	docker build . -t tega-app
@@ -26,8 +18,8 @@ clean: stop
 test-flake8: 
 	docker run --rm tega-app python -m flake8 /code
 
-test-python: # add up build prereq
+test-python:
 	docker run --rm tega-app python -m unittest discover -s tests
 
 .PHONY: test
-test: test-python test-flake8
+test: build test-python test-flake8

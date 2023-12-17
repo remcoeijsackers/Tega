@@ -1,5 +1,3 @@
-import random
-import datetime
 from dataclasses import dataclass
 
 from src.providers.mail.mail_generator import MailGenerator

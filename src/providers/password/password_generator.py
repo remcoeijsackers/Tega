@@ -1,7 +1,3 @@
-import datetime
-import random
-import re
-
 from src.utils.passwords import generate_password
 
 class PasswordGenerator(object):
