@@ -179,6 +179,8 @@ http://localhost:9000/?count=3&nationality=USA&gender=f&age=adult
 
 `generate random accounts, above 18 years, gender male`
 
+http://localhost:9000/?count=3&gender=m&age=adult
+
 ```json
 {
   "accounts": [
