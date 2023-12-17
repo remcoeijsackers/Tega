@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="#"><img src="assets/images/logo.jpg"/></a>
+  <a href="#"><img src="assets/images/logo.jpg" style="width:50%"/></a>
 </p>
 
 <p align="center">
@@ -9,7 +9,7 @@ A development tool to generate random fake accounts, based on a number of parame
 <p align="center">
     <a href="https://github.com/remcoeijsackers/namegen/actions/workflows/python-app.yml">
         <img alt="CI Workflow" src="https://github.com/remcoeijsackers/tega/actions/workflows/python-app.yml/badge.svg"
-        style="width:50%">
+        >
     </a>
     <a href="#">
         <img alt="Python" src="https://img.shields.io/static/v1?label=Python&message=3.11%2B&color=informational&logo=python">
