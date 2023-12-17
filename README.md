@@ -12,7 +12,7 @@ make up
 
 Call the service
 
-_http://localhost:9000/_?count=2&nationality=USA
+http://localhost:9000/?count=2&nationality=USA
 
 ```json
 {
@@ -99,7 +99,7 @@ The following nationalities have their most common first and lastnames present i
 
 Use them to retrieve accounts based on the nationality.
 
-_http://localhost:9000/_?count=3&nationality=USA&gender=f&age=adult
+http://localhost:9000/?count=3&nationality=USA&gender=f&age=adult
 
 ```json
 {
