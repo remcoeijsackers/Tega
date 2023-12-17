@@ -342,13 +342,15 @@ nationality = [
 # All names
 
 male_first_names = dutch_male_firstnames + australia_male_firstnames \
-                    + newzealand_male_firstnames + phillippines_male_firstnames \
+                    + newzealand_male_firstnames \
+                    + phillippines_male_firstnames \
                     + turkey_male_firstnames + french_male_firstnames \
                     + usa_male_firstnames + england_male_firstnames \
                     + german_male_firstnames + indian_male_firstnames
 
 female_first_names = dutch_female_firstnames + australia_female_firstnames \
-                    + newzealand_female_firstnames + phillippines_female_firstnames \
+                    + newzealand_female_firstnames \
+                    + phillippines_female_firstnames \
                     + turkey_female_firstnames + french_female_firstnames \
                     + usa_female_firstnames + england_female_firstnames \
                     + german_female_firstnames + indian_female_firstnames
@@ -359,12 +361,12 @@ last_names = dutch_surnames + australian_surnames \
             + usa_surnames + england_surnames \
             + german_surnames + indian_surnames
 
-letters= "abcdefghijlkmnoptuvw"
+letters = "abcdefghijlkmnoptuvw"
 
 chars = "!@#$%^&*"
 
 
-def get_last_based_nat(nat:str) -> str:
+def get_last_based_nat(nat : str) -> str:
     if nat == "Turkey":
         return random.choice(turkey_surnames)
     if nat == "New Zealand":
@@ -388,7 +390,7 @@ def get_last_based_nat(nat:str) -> str:
     return random.choice(last_names)
     
 
-def get_first_based_nat(nat:str, gender:str = "") -> str:
+def get_first_based_nat(nat : str, gender : str = "") -> str:
 
     if nat == "France":
         if gender == "m":
@@ -423,7 +425,9 @@ def get_first_based_nat(nat:str, gender:str = "") -> str:
             return random.choice(australia_male_firstnames)
         if gender == "f":
             return random.choice(australia_female_firstnames)
-        return random.choice(australia_male_firstnames + australia_male_firstnames)
+        return random.choice(
+            australia_male_firstnames + australia_male_firstnames
+            )
 
     if nat == "India": 
         if gender == "m":
@@ -437,21 +441,27 @@ def get_first_based_nat(nat:str, gender:str = "") -> str:
             return random.choice(england_female_firstnames)
         if gender == "f":
             return random.choice(england_female_firstnames)
-        return random.choice(england_female_firstnames + england_male_firstnames)
+        return random.choice(
+            england_female_firstnames + england_male_firstnames
+            )
 
     if nat == "New Zealand":
         if gender == "m":
             return random.choice(newzealand_male_firstnames)
         if gender == "f":
             return random.choice(newzealand_female_firstnames)
-        return random.choice(newzealand_female_firstnames + newzealand_male_firstnames)
+        return random.choice(
+            newzealand_female_firstnames + newzealand_male_firstnames
+            )
 
     if nat == "Philippines":
         if gender == "m":
             return random.choice(phillippines_male_firstnames)
         if gender == "f":
             return random.choice(phillippines_female_firstnames)
-        return random.choice(phillippines_male_firstnames + phillippines_female_firstnames)
+        return random.choice(
+            phillippines_male_firstnames + phillippines_female_firstnames
+            )
 
     if nat == "Turkey":
         if gender == "m":

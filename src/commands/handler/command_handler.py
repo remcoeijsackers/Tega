@@ -3,6 +3,7 @@ import re
 
 logger = logging.getLogger(__name__)
 
+
 class RequestHandler():
     def __init__(self, defined_args) -> None:
         self.args: None
@@ -10,8 +11,8 @@ class RequestHandler():
 
     def __arg_present(self, name):
         value = self.args.get(name)
-        
-        if value == None:
+
+        if value is None:
             return False
 
         return True
@@ -49,15 +50,13 @@ class RequestHandler():
             return self.defined_args.get(name).get("default")
 
         return self.args.get(name)
-    
-    def update_defined_arg(self, key:str, value: dict):
-        self.defined_args[key]= value
+
+    def update_defined_arg(self, key: str, value: dict):
+        self.defined_args[key] = value
         return self
 
     def handle_request(self, args) -> dict:
         self.args = args
-        data = {str(i): self.__retrieve(i) for i in self.defined_args.keys()} 
+        data = {str(i): self.__retrieve(i) for i in self.defined_args.keys()}
 
         return data
-
-

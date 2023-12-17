@@ -22,6 +22,12 @@ stop:
 clean: stop
 	docker rm $(shell docker ps -a -q --filter ancestor=tega-app)
 
-.PHONY: test
-test: 
+
+test-flake8: 
+	docker run --rm tega-app python -m flake8 /code
+
+test-python: # add up build prereq
 	docker run --rm tega-app python -m unittest discover -s tests
+
+.PHONY: test
+test: test-python test-flake8

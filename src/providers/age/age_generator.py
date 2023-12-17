@@ -6,7 +6,7 @@ class AgeGenerator(object):
     def __init__(self) -> None:
         pass
 
-    def retrieve_age(self,):
+    def retrieve_age(self,) -> datetime.datetime:
         raise NotImplementedError
 
 class RandomAgeGenerator(AgeGenerator):

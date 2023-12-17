@@ -1,1 +1,1 @@
-from .account import generate_account
+from .account import generate_account  # type:ignore

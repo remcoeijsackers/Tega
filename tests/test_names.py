@@ -1,10 +1,10 @@
 from unittest import TestCase
-from src.constants.names import usa_surnames, usa_male_firstnames, usa_female_firstnames
+from src.constants.names import usa_surnames, usa_male_firstnames
+from src.constants.names import usa_female_firstnames
 from src.constants.names import get_first_based_nat, get_last_based_nat
 
 
 class TestNames(TestCase):
-
 
     def test_it_returns_expected_last_name(self):
         last = get_last_based_nat(nat="USA")

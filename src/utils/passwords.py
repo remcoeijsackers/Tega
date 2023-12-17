@@ -1,6 +1,7 @@
 import string
 import secrets
 
+
 def __random_string(length: int, **kwargs):
     """
     Generates a random string.
@@ -38,8 +39,12 @@ def __random_string(length: int, **kwargs):
 
 
 def generate_password(chars: int = 20, lowercase=True, punctuation=True):
-        """
-        Generates a password with at least one uppercase,
-        one lowercase, one digit, and one punctuation.
-        """
-        return __random_string(chars, lowercase=lowercase, punctuation=punctuation)
+    """
+    Generates a password with at least one uppercase,
+    one lowercase, one digit, and one punctuation.
+    """
+    return __random_string(
+        chars,
+        lowercase=lowercase,
+        punctuation=punctuation
+    )

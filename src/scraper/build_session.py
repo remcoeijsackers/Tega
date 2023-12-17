@@ -5,7 +5,8 @@ from selenium.webdriver.firefox.options import Options as firefox_options
 import os
 
 SELENIUM_SESSION_FILE = './selenium_session'
-SELENIUM_PORT=9515
+SELENIUM_PORT = 9515
+
 
 def build_driver(dtype=None):
     if dtype == "chrome":
@@ -24,7 +25,10 @@ def build_driver(dtype=None):
         session_id = session_info[1].strip()
 
         capabilities = options.to_capabilities()
-        driver = webdriver.Remote(command_executor=executor_url, desired_capabilities=capabilities)
+        driver = webdriver.Remote(
+            command_executor=executor_url,
+            desired_capabilities=capabilities
+        )
         # prevent annoying empty chrome windows
         driver.close()
         driver.quit() 
